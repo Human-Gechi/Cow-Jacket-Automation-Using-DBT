@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: cowjack
+    database: raw
+    schema: cowjack
+
+    tables:
+      - name: customers
+        description: Raw Customer data
