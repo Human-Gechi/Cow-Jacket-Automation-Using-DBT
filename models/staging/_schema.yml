@@ -93,7 +93,7 @@ models:
           - not_null
 
   - name: stg_loyalty_points
-    description: "orders dataset from raw.cowjack.customers."
+    description: "Loyalty dataset from raw.cowjack.Loyalty."
     columns:
       - name: customer_id
         tests:
@@ -106,7 +106,7 @@ models:
         - not_null
         - unique
       - name: points_earned
-        description: "The first date the customer placed an order"
+        description: "Points earned for loyalty"
         tests:
           - not_null
       - name: transaction_date

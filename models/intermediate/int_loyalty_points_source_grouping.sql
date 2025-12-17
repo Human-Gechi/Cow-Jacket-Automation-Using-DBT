@@ -7,7 +7,7 @@ grouped_by_source as (
         source,
         sum(points_earned) as total_points
     from loyalty_points
-    group by 1 
+    group by source
 )
 
 select * from grouped_by_source
