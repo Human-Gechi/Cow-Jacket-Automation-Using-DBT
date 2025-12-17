@@ -1,0 +1,123 @@
+version: 2
+
+models:
+  - name: stg_customer
+    description: "customers dataset from raw.cowjack.customers."
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier."
+        tests: 
+        - not_null 
+        - unique
+      - name: full_name
+        description: "The full name of the customer"
+        tests: 
+        - not_null
+      - name: email 
+        description: "The unique email address of the customer"
+        tests: 
+        - not_null
+        - unique
+      - name: join_date
+        description: "The first date the customer joined sales record"
+
+  - name: stg_orders
+    description: "orders dataset from raw.cowjack.customers."
+    columns:
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: order_id
+        description: "Unique Orders Identifier"
+        tests: 
+        - not_null
+        - unique
+      - name: order_date
+        description: "The first date the customer placed an order"
+        tests:
+          - not_null
+      - name: total_amount
+        description: "Total amount of an order"
+        tests:
+          - not_null
+
+  - name: stg_products
+    description: "orders dataset from raw.cowjack.customers."
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: category
+        description: "Product category"
+        tests: 
+        - not_null
+        - accepted_values:
+            values:
+              - ["Electronics", "Home", "Fashion","Beauty","Groceries"]
+      - name: product_name
+        description: "Product Name"
+        tests:
+          - not_null
+      - name: Price
+        description: "Product Cost"
+        tests:
+          - not_null
+
+  - name: stg_order_items
+    description: "order_items dataset from raw.cowjack.customers."
+    columns:
+      - name: order_id
+        tests:
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id
+      - name: product_id
+        description: "Unique Product Identifier"
+        tests: 
+        - not_null
+        - unique
+      - name: order_item_id
+        description: "The first date the customer placed an order"
+        tests:
+          - not_null
+          - unique
+      - name: Quantity
+        description: "Total amount of an order"
+        tests:
+          - not_null
+      - name: line_total
+        description: "Total amount of orders per order"
+        tests:
+          - not_null
+
+  - name: stg_loyalty_points
+    description: "orders dataset from raw.cowjack.customers."
+    columns:
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: loyalty_id
+        description: "Unique Orders Identifier"
+        tests: 
+        - not_null
+        - unique
+      - name: points_earned
+        description: "The first date the customer placed an order"
+        tests:
+          - not_null
+      - name: transaction_date
+        description: "Date of transaction"
+        tests:
+          - not_null
+      - name: source
+        description: "Source of loyalty_point"
+        tests:
+          - accepted_values:
+              values:
+                - ["Referral", "Promotion", "Order"]
+  
