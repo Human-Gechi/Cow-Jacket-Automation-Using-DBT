@@ -39,3 +39,7 @@ models:
   cow_jacket:
     staging:
       +materialized: view
+    intermediate:
+      +materialized: view
+    mart:
+      +materialized: table
