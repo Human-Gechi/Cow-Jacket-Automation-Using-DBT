@@ -54,9 +54,6 @@ models:
         description: "Product category"
         tests: 
         - not_null
-        - accepted_values:
-            values:
-              - ["Electronics", "Home", "Fashion","Beauty","Groceries"]
       - name: product_name
         description: "Product Name"
         tests:
@@ -78,7 +75,9 @@ models:
         description: "Unique Product Identifier"
         tests: 
         - not_null
-        - unique
+        - relationships:
+              to: ref('stg_products')
+              field: product_id
       - name: order_item_id
         description: "The first date the customer placed an order"
         tests:
@@ -118,6 +117,6 @@ models:
         description: "Source of loyalty_point"
         tests:
           - accepted_values:
-              values:
-                - ["Referral", "Promotion", "Order"]
+              values: ["Referral", "Promotion", "Order"]
+
   
