@@ -25,12 +25,12 @@ models:
     description: "orders dataset from raw.cowjack.customers."
     columns:
       - name: customer_id
-        description: "Unique customers Identifier"
+        description: "Unique customers Identifie.r"
         data_tests:
           - not_null
           - unique
       - name: order_id
-        description: "Unique Orders Identifier"
+        description: "Unique Orders Identifier."
         data_tests: 
           - not_null
           - unique
