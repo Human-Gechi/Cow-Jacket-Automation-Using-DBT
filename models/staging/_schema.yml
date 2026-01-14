@@ -6,16 +6,16 @@ models:
     columns:
       - name: customer_id
         description: "Unique customer identifier."
-        data_tests: 
-          - not_null 
+        data_tests:
+          - not_null
           - unique
       - name: full_name
         description: "The full name of the customer"
-        data_tests: 
+        data_tests:
           - not_null
-      - name: email 
+      - name: email
         description: "The unique email address of the customer"
-        data_tests: 
+        data_tests:
           - not_null
           - unique
       - name: join_date
@@ -25,13 +25,15 @@ models:
     description: "orders dataset from raw.cowjack.customers."
     columns:
       - name: customer_id
-        description: "Unique customers Identifie.r"
+        description: "Unique customers Identifier"
         data_tests:
           - not_null
-          - unique
+          - relationships:
+              field: customer_id
+              to: ref('customers')
       - name: order_id
         description: "Unique Orders Identifier."
-        data_tests: 
+        data_tests:
           - not_null
           - unique
       - name: order_date
@@ -40,4 +42,84 @@ models:
           - not_null
       - name: total_amount
         description: "Total amount of an order"
-        
+
+  - name: stg_products
+    description: "products dataset from raw.cowjack.customers."
+    columns:
+      - name: product_id
+        description: "Unique products Identifier"
+        data_tests:
+          - not_null
+          - unique
+      - name: product_name
+        description: "Name of products."
+        data_tests:
+          - not_null
+      - name: category
+        description: "Classification of products"
+        data_tests:
+          - not_null
+      - name: price
+        description: "Cost of Products"
+        data_tests:
+          - not_null
+
+  - name: stg_order_items
+    description: "orders dataset from raw.cowjack.customers."
+    columns:
+      - name: order_item_id
+        description: "Unique order items Identifier"
+        data_tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: "Unique Orders Identifier."
+        data_tests:
+          - not_null
+          - relationships:
+              field: order_id
+              to: ref('orders')
+      - name: product_id
+        description: "The first date the customer placed an order"
+        data_tests:
+          - not_null
+          - relationships:
+              field: product_id
+              to: ref('products')
+      - name: quantity
+        description: "Total quantities in an order"
+      - name: line_total
+        description: "Total amount in a particular order items"
+
+  - name: stg_loyalty_points
+    description: "loyalty_points dataset from raw.cowjack.loyalty_points."
+    columns:
+      - name: loyalty_id
+        description: "Unique loyalty_points Identifier."
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Unique customers Identifier"
+        data_tests:
+          - not_null
+          - relationships:
+              field: customer_id
+              to: ref('customers')
+      - name: points_earned
+        description: "Points earned by customers"
+        data_tests:
+          - not_null
+      - name: transaction_date
+        description: "Transaction dates of customers"
+        data_tests:
+          - not_null
+      - name: source
+        description: "Source of customer loyalty point"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - "Order"
+                - "Promotion"
+                - "Referral"

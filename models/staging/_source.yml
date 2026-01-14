@@ -4,19 +4,19 @@ sources:
   - name: cowjack
     database: raw
     schema: cowjack
+    description: "A clone of our Snowflake Database"
 
     tables:
       - name: customers
         description: Raw Customer data
       - name: products
         description: Raw Products Data
-      
+
       - name: orders
         description: Raw Products Data
-      
+
       - name: order_items
         description: Raw order_items data
-      
+
       - name: loyalty_points
         description: Raw order_items data
-      
