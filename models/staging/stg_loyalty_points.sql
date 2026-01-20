@@ -1,4 +1,4 @@
-
+-- Selecting info about loyalty_points using Jinja template ref
 select
         loyalty_id,
         customer_id, 

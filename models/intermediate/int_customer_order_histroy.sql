@@ -1,3 +1,4 @@
+-- Getting cstomer order history 
 with orders as (
     select * from {{ ref('stg_orders') }}
 ),

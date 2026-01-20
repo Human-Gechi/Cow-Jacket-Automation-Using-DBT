@@ -1,3 +1,4 @@
+-- Distribution of customer loyalty points
 with loyalty_points as (
     select * from {{ ref('stg_loyalty_points') }}
 ),

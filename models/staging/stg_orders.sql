@@ -1,3 +1,4 @@
+-- Selectting info about orders using Jinja template ref
 select
         order_id,
         customer_id,

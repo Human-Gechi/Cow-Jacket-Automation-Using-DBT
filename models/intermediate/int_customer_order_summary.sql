@@ -1,3 +1,4 @@
+-- Order summmary of orders made by customer
 With order_items as (
     select * from {{ ref('stg_order_items') }}
 ),
