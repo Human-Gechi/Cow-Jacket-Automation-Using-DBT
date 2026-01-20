@@ -1,3 +1,4 @@
+--- Test for email address from the customers table
 with customers as (
     select 
         email

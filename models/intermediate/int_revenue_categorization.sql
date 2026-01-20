@@ -1,3 +1,4 @@
+-- Distribution of orders_items placed by customers and the products ordered.
 with order_items as (
     select * from {{ ref('stg_order_items') }}
 ),
@@ -5,7 +6,7 @@ with order_items as (
 products as (
     select * from {{ ref('stg_products') }}
 ),
-
+--- Joining order_items on products ordered
 order_category as (
     select
         o_i.order_item_id,

@@ -1,3 +1,4 @@
+-- Selectting info about order_items using Jinja template ref
 select
         order_item_id, 
         order_id, 

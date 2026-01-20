@@ -1,3 +1,4 @@
+-- Calculating total loyalty_points accumulated by customers overtime
 with loyal_points as (
     select * from {{ ref('stg_loyalty_points') }}
 ),
