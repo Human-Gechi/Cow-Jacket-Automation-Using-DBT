@@ -24,7 +24,6 @@ By utilizing **dbt**, this project ensures that all data transformations are ver
 ### 1. Staging Layer (`models/staging`)
 It is stored as a view in the data warehouse
 This layer acts as the entry point wit key features like:
-* Renaming columns for consistency.
 * Selecting required columns
 * Generic tests in the _Schema.yml file
 * Tables documentation in the _source.yml file
